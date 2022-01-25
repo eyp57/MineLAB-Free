@@ -66,6 +66,7 @@ public class PlaceholderAPI extends PlaceholderExpansion {
                 for (int i = 1; i <= columnCount; i++ ) {
                     String name = rsmd.getColumnName(i);
                     if(name.equals("credit")) {
+
                         credit = resultSet.getString(i);
                     }
                 }
