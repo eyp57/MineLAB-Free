@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import tr.web.minelab.minelabfree.MineLABFree;
 
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -60,8 +61,13 @@ public class PlaceholderAPI extends PlaceholderExpansion {
             try {
                 Statement statement = MineLABFree.getDataSource().getConnection().createStatement();
                 ResultSet resultSet = statement.executeQuery("SELECT * FROM `accounts` WHERE `username` = '" + player.getName() + "'");
-                while (resultSet.next()) {
-                    credit = resultSet.getString(8);
+                ResultSetMetaData rsmd = resultSet.getMetaData();
+                int columnCount = rsmd.getColumnCount();
+                for (int i = 1; i <= columnCount; i++ ) {
+                    String name = rsmd.getColumnName(i);
+                    if(name.equals("credit")) {
+                        credit = resultSet.getString(i);
+                    }
                 }
                 return credit;
             } catch (SQLException ex) {
