@@ -4,21 +4,20 @@ import org.bukkit.entity.Player;
 import tr.web.minelab.minelabfree.MineLABFree;
 
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
 
 public class FetchData {
 
-    // SQL den verileri çek.
-
     public String lastSupporter = "Yok";
     public String lastSupporterCredit = "0";
 
     public Map<UUID, String> credits = new HashMap<>();
+    public Map<String, Integer> top10 = new LinkedHashMap<>();
 
     public String getLastSupporter() {
         try {
@@ -58,9 +57,25 @@ public class FetchData {
         }
     }
 
+    public void updateTop10() {
+        int limit = 26;
+        if(MineLABFree.getInstance().getConfig().getInt("TopGui.Players") <= 26)
+            limit = MineLABFree.getInstance().getConfig().getInt("TopGui.Players");
+        try {
+            Statement statement = MineLABFree.getDataSource().getConnection().createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM `accounts` ORDER BY `credit` DESC LIMIT " + limit);
+            while(resultSet.next()) {
+                String name = resultSet.getString("username");
+                int credit = resultSet.getInt("credit");
+                this.top10.put(name, credit);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public String getCredit(UUID uuid) {
-        String credit = credits.get(uuid);
-        return credit;
+        return credits.get(uuid);
     }
     public void deleteCreditFromMap(UUID uuid) {
         credits.remove(uuid);

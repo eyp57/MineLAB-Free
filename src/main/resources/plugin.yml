@@ -5,3 +5,10 @@ depend: [ PlaceholderAPI ]
 authors: [ zRooter ]
 description: MineLAB Free coded with love
 website: https://minelab.web.tr
+
+commands:
+  topkredi:
+    aliases:
+      - kreditop
+      - topk
+    description: Top

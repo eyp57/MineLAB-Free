@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class DataSource {
 
-    Connection con = null;
+    Connection con;
 
     public DataSource() throws SQLException {
         String username = MineLABFree.getInstance().getConfig().getString("Database.username");

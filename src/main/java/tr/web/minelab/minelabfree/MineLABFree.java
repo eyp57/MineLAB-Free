@@ -8,6 +8,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
+import tr.web.minelab.minelabfree.commands.TopCommand;
 import tr.web.minelab.minelabfree.hooks.PlaceholderAPI;
 import tr.web.minelab.minelabfree.utils.DataSource;
 import tr.web.minelab.minelabfree.utils.FetchData;
@@ -44,9 +45,10 @@ public final class MineLABFree extends JavaPlugin implements Listener {
             new BukkitRunnable() {
                 @Override
                 public void run() {
-                    getLogger().info("Son Bağışcı yenilendi");
+                    getLogger().info("Son Bağışcı & TopList yenilendi");
                     fetchData.getLastSupporterCredit();
                     fetchData.getLastSupporter();
+                    fetchData.updateTop10();
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         fetchData.updateCredit(player);
                     }
@@ -57,6 +59,8 @@ public final class MineLABFree extends JavaPlugin implements Listener {
             this.setEnabled(false);
             System.out.println("PlaceholderAPI bulunamadı plugin deaktifleşiyor.");
         }
+
+        getServer().getPluginCommand("topkredi").setExecutor(new TopCommand());
     }
     @Override
     public void onDisable() {

@@ -3,3 +3,12 @@ Database:
   database: database
   username: user
   password: password
+
+TopGui:
+  Players: 26 # Listelencek data sayısı. Max 26 sayı girilebilir.
+  Title: "&c&lTop 10 Kredi Sahibi"
+  ItemLore: # Kullanılabilen placeholderlar: %kredi% & %oyuncu%
+    - '&eKullanıcı: &f%oyuncu%'
+    - '&eKredi: &f%kredi% ⛃'
+    - ''
+    - '&a&n&owww.minelab.web.tr'
