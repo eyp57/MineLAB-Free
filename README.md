@@ -10,3 +10,7 @@ https://minelab.web.tr
 %minelab_son_bagisci_kredi%
 
 %minelab_kredi%
+
+### Komutlar
+
+/topkredi
