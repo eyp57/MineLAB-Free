@@ -17,6 +17,11 @@ public class FetchData {
     public String lastSupporterCredit = "0";
 
     public Map<UUID, String> credits = new HashMap<>();
+    public Map<UUID, String> instagrams = new HashMap<>();
+    public Map<UUID, String> twitters = new HashMap<>();
+    public Map<UUID, String> youtubes = new HashMap<>();
+    public Map<UUID, String> discords = new HashMap<>();
+    public Map<UUID, String> skypes = new HashMap<>();
     public Map<String, Integer> top10 = new LinkedHashMap<>();
 
     public String getLastSupporter() {
@@ -56,7 +61,35 @@ public class FetchData {
              credits.put(player.getUniqueId(), "0");
         }
     }
-
+    public void updateSocialAccounts(Player player) {
+        String instagram = "-";
+        String discord = "-";
+        String twitter = "-";
+        String skype = "-";
+        String youtube = "-";
+        try {
+            Statement statement = MineLABFree.getDataSource().getConnection().createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM `accounts` WHERE `username` = '" + player.getName() + "'");
+            if(resultSet.next()) {
+                instagram = resultSet.getString("instagram");
+                discord = resultSet.getString("discord");
+                twitter = resultSet.getString("twitter");
+                skype = resultSet.getString("skype");
+                youtube = resultSet.getString("youtube");
+            }
+            instagrams.put(player.getUniqueId(), instagram);
+            discords.put(player.getUniqueId(), discord);
+            twitters.put(player.getUniqueId(), twitter);
+            youtubes.put(player.getUniqueId(), youtube);
+            skypes.put(player.getUniqueId(), skype);
+        } catch (SQLException e) {
+            instagrams.put(player.getUniqueId(), "-");
+            discords.put(player.getUniqueId(), "-");
+            skypes.put(player.getUniqueId(), "-");
+            youtubes.put(player.getUniqueId(), "-");
+            twitters.put(player.getUniqueId(), "-");
+        }
+    }
     public void updateTop10() {
         int limit = 26;
         if(MineLABFree.getInstance().getConfig().getInt("TopGui.Players") <= 26)
@@ -76,6 +109,21 @@ public class FetchData {
 
     public String getCredit(UUID uuid) {
         return credits.get(uuid);
+    }
+    public String getInstagram(UUID uuid) {
+        return instagrams.get(uuid);
+    }
+    public String getYouTube(UUID uuid) {
+        return youtubes.get(uuid);
+    }
+    public String getSkype(UUID uuid) {
+        return skypes.get(uuid);
+    }
+    public String getTwitter(UUID uuid) {
+        return twitters.get(uuid);
+    }
+    public String getDiscord(UUID uuid) {
+        return discords.get(uuid);
     }
     public void deleteCreditFromMap(UUID uuid) {
         credits.remove(uuid);

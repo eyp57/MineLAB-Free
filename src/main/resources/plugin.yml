@@ -11,4 +11,13 @@ commands:
     aliases:
       - kreditop
       - topk
-    description: Top
+    description: En fazla kredisi olan kişiler.
+  profile:
+    aliases:
+      - profil
+      - siteprofil
+      - sprofil
+      - webprofil
+      - webprofile
+      - siteprofile
+    description: Sitedeki Profilinizi GUIde gösterir

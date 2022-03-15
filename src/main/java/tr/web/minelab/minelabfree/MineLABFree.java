@@ -8,6 +8,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
+import tr.web.minelab.minelabfree.commands.ProfileCommand;
 import tr.web.minelab.minelabfree.commands.TopCommand;
 import tr.web.minelab.minelabfree.hooks.PlaceholderAPI;
 import tr.web.minelab.minelabfree.utils.DataSource;
@@ -45,12 +46,13 @@ public final class MineLABFree extends JavaPlugin implements Listener {
             new BukkitRunnable() {
                 @Override
                 public void run() {
-                    getLogger().info("Son Bağışcı & TopList yenilendi");
+                    getLogger().info("Son Bağışcı & TopList yenilendi & ve Diğer datalar");
                     fetchData.getLastSupporterCredit();
                     fetchData.getLastSupporter();
                     fetchData.updateTop10();
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         fetchData.updateCredit(player);
+                        fetchData.updateSocialAccounts(player);
                     }
                 }
             }.runTaskTimerAsynchronously(this, 0L, 5*1200L);
@@ -61,6 +63,7 @@ public final class MineLABFree extends JavaPlugin implements Listener {
         }
 
         getServer().getPluginCommand("topkredi").setExecutor(new TopCommand());
+        getServer().getPluginCommand("profile").setExecutor(new ProfileCommand());
     }
     @Override
     public void onDisable() {
@@ -80,7 +83,10 @@ public final class MineLABFree extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onPlayerJoinEvent(PlayerJoinEvent event) {
-        this.getServer().getScheduler().runTaskAsynchronously(this, () -> fetchData.updateCredit(event.getPlayer()));
+        this.getServer().getScheduler().runTaskAsynchronously(this, () -> {
+            fetchData.updateCredit(event.getPlayer());
+            fetchData.updateSocialAccounts(event.getPlayer());
+        });
     }
     @EventHandler
     public void onPlayerQuitEvent(PlayerQuitEvent event) {

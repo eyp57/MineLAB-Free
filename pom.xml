@@ -6,9 +6,11 @@
 
     <groupId>tr.web.minelab</groupId>
     <artifactId>MineLAB-Free</artifactId>
-    <version>1.4</version>
+    <version>1.5</version>
     <packaging>jar</packaging>
-
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
     <name>MineLABFree</name>
 
     <description>MineLAB Free coded with love</description>
@@ -110,9 +112,11 @@
             <version>8.6.2</version>
         </dependency>
         <dependency>
-            <groupId>com.github.PlaceholderAPI</groupId>
-            <artifactId>PlaceholderAPI</artifactId>
+            <groupId>me.clip</groupId>
+            <artifactId>placeholderapi</artifactId>
             <version>2.11.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}\libs\PlaceholderAPI-2.11.1.jar</systemPath>
         </dependency>
     </dependencies>
 </project>

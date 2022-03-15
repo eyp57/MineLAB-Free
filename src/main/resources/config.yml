@@ -12,3 +12,25 @@ TopGui:
     - '&eKredi: &f%kredi% ⛃'
     - ''
     - '&a&n&owww.minelab.web.tr'
+
+ProfileGui:
+  Rows: 3
+  Title: "&c&lProfil"
+  Slots:
+    'Social':
+      Slot: 11
+      Material: PLAYER_HEAD #PLAYER_HEAD yazıyorsa otomatik oyuncunun kafasını çeker !
+      Name: '&6Sosyal Medya'
+      Lore:
+        - '&dInstagram: &f%instagram%'
+        - '&cYouTube: &f%youtube%'
+        - '&9Discord: &f%discord%'
+        - '&bTwitter: &f%twitter%'
+        - '&1Skype: &f%skype%'
+    'Profil':
+      Slot: 15
+      Material: PLAYER_HEAD
+      Name: '&6Profil'
+      Lore:
+        - '&cKullanıcı: &f%player_name%' # %player_name% PlaceholderAPI den çeker !
+        - '&cKredi: &f%minelab_kredi%'
