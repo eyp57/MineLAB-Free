@@ -1,20 +1,25 @@
 package tr.web.minelab.minelabfree;
 
+import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.entities.Activity;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import tr.web.minelab.minelabfree.commands.ProfileCommand;
 import tr.web.minelab.minelabfree.commands.TopCommand;
 import tr.web.minelab.minelabfree.hooks.PlaceholderAPI;
+import tr.web.minelab.minelabfree.utils.Bot;
 import tr.web.minelab.minelabfree.utils.DataSource;
 import tr.web.minelab.minelabfree.utils.FetchData;
 
 import java.sql.SQLException;
+import java.util.Random;
+import java.util.Set;
 
 public final class MineLABFree extends JavaPlugin implements Listener {
 
@@ -26,7 +31,13 @@ public final class MineLABFree extends JavaPlugin implements Listener {
     public void onEnable() {
         // Plugin startup logic
         instance = this;
+        if(getConfig().getBoolean("Discord.Bot.Durum")) {
+            System.out.println("Bot aktifleştiriliyor.");
+            getServer().getPluginManager().registerEvents(new Bot(), this);
 
+        } else {
+            System.out.println("Bot configden kapatılmış.");
+        }
         saveDefaultConfig();
         try {
             dataSource = new DataSource();
@@ -88,9 +99,4 @@ public final class MineLABFree extends JavaPlugin implements Listener {
             fetchData.updateSocialAccounts(event.getPlayer());
         });
     }
-    @EventHandler
-    public void onPlayerQuitEvent(PlayerQuitEvent event) {
-        this.getServer().getScheduler().runTaskAsynchronously(this, () -> fetchData.deleteCreditFromMap(event.getPlayer().getUniqueId()));
-    }
-
 }

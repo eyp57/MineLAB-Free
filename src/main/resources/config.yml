@@ -4,6 +4,16 @@ Database:
   username: user
   password: password
 
+Discord:
+  Bot:
+    Durum: true
+    Token: "TOKEN"
+    Prefix: "!"
+  Embed:
+    Title: "MineLAB Free"
+    Footer: "Powered by zRooter#7295"
+    Color: "GREEN"
+
 TopGui:
   Players: 26 # Listelencek data sayısı. Max 26 sayı girilebilir.
   Title: "&c&lTop 10 Kredi Sahibi"
