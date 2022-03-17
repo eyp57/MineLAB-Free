@@ -14,3 +14,8 @@ https://minelab.web.tr
 ### Komutlar
 
 /topkredi
+/profil
+
+### Discord Komutları (JDA)
+
+!profil [Kullanıcı]
