@@ -1,9 +1,6 @@
 package tr.web.minelab.minelabfree;
 
-import net.dv8tion.jda.api.JDA;
-import net.dv8tion.jda.api.entities.Activity;
 import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,10 +13,12 @@ import tr.web.minelab.minelabfree.hooks.PlaceholderAPI;
 import tr.web.minelab.minelabfree.utils.Bot;
 import tr.web.minelab.minelabfree.utils.DataSource;
 import tr.web.minelab.minelabfree.utils.FetchData;
+import tr.web.minelab.minelabfree.utils.Metrics;
 
 import java.sql.SQLException;
-import java.util.Random;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.Callable;
 
 public final class MineLABFree extends JavaPlugin implements Listener {
 
@@ -31,6 +30,33 @@ public final class MineLABFree extends JavaPlugin implements Listener {
     public void onEnable() {
         // Plugin startup logic
         instance = this;
+        int metricsId = 14696;
+        Metrics metrics = new Metrics(this, metricsId);
+        String javaVersion = System.getProperty("java.version");
+        metrics.addCustomChart(new Metrics.DrilldownPie("javaVersion", () -> {
+            Map<String, Map<String, Integer>> map = new HashMap<>();
+            Map<String, Integer> entry = new HashMap<>();
+            entry.put(javaVersion, 1);
+            if (javaVersion.startsWith("1.8")) {
+                map.put("Java 1.8", entry);
+            } else if (javaVersion.startsWith("9")) {
+                map.put("Java 9", entry);
+            } else if (javaVersion.startsWith("11")) {
+                map.put("Java 11", entry);
+            } else if (javaVersion.startsWith("12")) {
+                map.put("Java 12", entry);
+            } else if (javaVersion.startsWith("16")) {
+                map.put("Java 16", entry);
+            } else if (javaVersion.startsWith("17")) {
+                map.put("Java 17", entry);
+            } else {
+                map.put("Other", entry);
+            }
+            return map;
+        }));
+
+        System.out.println("Kullanılan java sürümü: " + javaVersion);
+
         if(getConfig().getBoolean("Discord.Bot.Durum")) {
             System.out.println("Bot aktifleştiriliyor.");
             getServer().getPluginManager().registerEvents(new Bot(), this);
