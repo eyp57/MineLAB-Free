@@ -30,9 +30,8 @@ public class FetchData {
             ResultSet resultSet = statement.executeQuery("SELECT * FROM `creditHistory` ORDER BY `id` DESC LIMIT 1");
             if(resultSet.next())
                 lastSupporter = resultSet.getString("username");
-
-
             return lastSupporter;
+
         } catch (SQLException ex) {
             return "dbErr";
         }
@@ -59,6 +58,25 @@ public class FetchData {
             credits.put(player.getUniqueId(), credit);
         } catch (SQLException ex) {
              credits.put(player.getUniqueId(), "0");
+        }
+    }
+    public void deleteCredit(Player player, int amount) {
+        try {
+            Statement statement = MineLABFree.getDataSource().getConnection().createStatement();
+            statement.execute("UPDATE `accounts` SET `credit` = credit - " + amount + " WHERE `username` = '" + player.getName() + "'");
+            updateCredit(player);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void addCredit(Player player, int amount) {
+        try {
+            Statement statement = MineLABFree.getDataSource().getConnection().createStatement();
+            statement.execute("UPDATE `accounts` SET `credit` = credit + " + amount + " WHERE `username` = '" + player.getName() + "'");
+            updateCredit(player);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
     }
     public void updateSocialAccounts(Player player) {
@@ -124,9 +142,6 @@ public class FetchData {
     }
     public String getDiscord(UUID uuid) {
         return discords.get(uuid);
-    }
-    public void deleteCreditFromMap(UUID uuid) {
-        credits.remove(uuid);
     }
 
 }

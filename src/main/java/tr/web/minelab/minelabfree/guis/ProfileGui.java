@@ -19,9 +19,14 @@ public class ProfileGui {
 
     Gui gui;
     public ProfileGui(Player player) {
-
-        this.gui = Gui.gui().rows(MineLABFree.getInstance().getConfig().getInt("ProfileGui.Rows")).title(Component.text(ChatColor.translateAlternateColorCodes('&', MineLABFree.getInstance().getConfig().getString("ProfileGui.Title")))).create();
-
+        this.gui = Gui.gui()
+                .rows(MineLABFree.getInstance().getConfig().getInt("ProfileGui.Rows"))
+                .title(Component.text(ChatColor.translateAlternateColorCodes('&', MineLABFree.getInstance().getConfig().getString("ProfileGui.Title"))))
+                .disableItemSwap()
+                .disableItemDrop()
+                .disableItemPlace()
+                .disableItemTake()
+                .create();
         for(String slot : MineLABFree.getInstance().getConfig().getConfigurationSection("ProfileGui.Slots").getKeys(false)) {
             ItemStack itemStack;
             if(MineLABFree.getInstance().getConfig().getString("ProfileGui.Slots." + slot + ".Material").equals("PLAYER_HEAD")) {
@@ -65,7 +70,7 @@ public class ProfileGui {
             });
             this.gui.setItem(MineLABFree.getInstance().getConfig().getInt("ProfileGui.Slots." + slot + ".Slot"), guiItem);
         }
-
         this.gui.open(player);
     }
+
 }

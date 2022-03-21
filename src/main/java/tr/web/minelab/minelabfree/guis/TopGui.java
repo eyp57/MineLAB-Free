@@ -21,6 +21,10 @@ public class TopGui {
         this.gui = Gui.gui()
                 .title(Component.text(ChatColor.translateAlternateColorCodes('&', MineLABFree.getInstance().getConfig().getString("TopGui.Title"))))
                 .rows(3)
+                .disableItemSwap()
+                .disableItemDrop()
+                .disableItemPlace()
+                .disableItemTake()
                 .create();
         Map<String, Integer> top10 = MineLABFree.getFetchData().top10;
         for(Map.Entry<String, Integer> x : top10.entrySet()) {

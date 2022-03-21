@@ -21,3 +21,12 @@ commands:
       - webprofile
       - siteprofile
     description: Sitedeki Profilinizi GUIde gösterir
+  wshop:
+    aliases:
+      - sitemarket
+      - webshop
+    description: Site Market
+  kredi:
+    aliases:
+      - credit
+    description: Kredi Komutu

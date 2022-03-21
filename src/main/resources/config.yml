@@ -14,6 +14,37 @@ Discord:
     Footer: "Powered by zRooter#7295"
     Color: "GREEN"
 
+ShopGui:
+  Rows: 3
+  Title: "&c&lMarket"
+  Products:
+    'VIP':
+      Cost: 10
+      Slot: 10
+      Material: IRON_BLOCK
+      Name: '&cVIP'
+      Lore:
+        - '&cÜrün Fiyatı: &a10 Kredi'
+        - '&c'
+        - '&fÖzelliker:'
+        - '&e/fly &aKomutu'
+      Commands: # Konsolda girilcek komutlar
+        - 'manuadd %player% VIP'
+    'VIP+':
+      Cost: 20
+      Slot: 16
+      Material: GOLD_BLOCK
+      Name: '&cVIP+'
+      Lore:
+        - '&cÜrün Fiyatı: &a20 Kredi'
+        - '&c'
+        - '&fÖzelliker:'
+        - '&e/fly &aKomutu'
+        - '&e/feed &aKomutu'
+      Commands: # Konsolda girilcek komutlar
+        - 'manuadd %player% VIP+'
+
+
 TopGui:
   Players: 26 # Listelencek data sayısı. Max 26 sayı girilebilir.
   Title: "&c&lTop 10 Kredi Sahibi"

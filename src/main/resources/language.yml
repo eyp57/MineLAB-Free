@@ -1,0 +1,7 @@
+noPerm: '&cMaalesef yetkiniz yok.'
+creditGived: '&aBaşarıyla &e%player% &akişisine &e%amount% &akredi verildi.'
+creditRemoved: '&aBaşarıyla &e%player% &akişisinin &e%amount% &akredisi var.'
+credits: '&e%player% &7kişisinin &e%credit% &7kredisi var.'
+Shop:
+  success: '&aBaşarıyla &e%product% &aÜrününü aldın.'
+  error: '&cMaalesef &e%product% &aÜrününü almak için yeterli krediniz bulunmuyor. &e%credit%&7/&e%required_credit%'
