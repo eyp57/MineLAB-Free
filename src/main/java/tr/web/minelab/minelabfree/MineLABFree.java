@@ -13,7 +13,6 @@ import tr.web.minelab.minelabfree.commands.ShopCommand;
 import tr.web.minelab.minelabfree.commands.TopCommand;
 import tr.web.minelab.minelabfree.configurations.LanguageConfiguration;
 import tr.web.minelab.minelabfree.hooks.PlaceholderAPI;
-import tr.web.minelab.minelabfree.utils.Bot;
 import tr.web.minelab.minelabfree.utils.DataSource;
 import tr.web.minelab.minelabfree.utils.FetchData;
 import tr.web.minelab.minelabfree.utils.Metrics;
@@ -41,7 +40,7 @@ public final class MineLABFree extends JavaPlugin implements Listener {
             Map<String, Integer> entry = new HashMap<>();
             entry.put(javaVersion, 1);
             if (javaVersion.startsWith("1.8")) {
-                map.put("Java 1.8", entry);
+                map.put("Java 8", entry);
             } else if (javaVersion.startsWith("9")) {
                 map.put("Java 9", entry);
             } else if (javaVersion.startsWith("11")) {
@@ -59,14 +58,6 @@ public final class MineLABFree extends JavaPlugin implements Listener {
         }));
 
         System.out.println("Kullanılan java sürümü: " + javaVersion);
-
-        if(getConfig().getBoolean("Discord.Bot.Durum")) {
-            System.out.println("Bot aktifleştiriliyor.");
-            getServer().getPluginManager().registerEvents(new Bot(), this);
-
-        } else {
-            System.out.println("Bot configden kapatılmış.");
-        }
         saveDefaultConfig();
         languageConfiguration = new LanguageConfiguration();
         try {

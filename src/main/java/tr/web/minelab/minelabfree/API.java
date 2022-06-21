@@ -1,19 +1,9 @@
 package tr.web.minelab.minelabfree;
 
-import net.dv8tion.jda.api.JDA;
 import org.bukkit.entity.Player;
-import tr.web.minelab.minelabfree.utils.Bot;
 import tr.web.minelab.minelabfree.utils.DataSource;
 
 public class API {
-    private static JDA jda = Bot.jda;
-
-    public static JDA getJDA() {
-        return jda;
-    }
-    public static String getInstagram(Player player) {
-        return MineLABFree.getFetchData().getInstagram(player.getUniqueId());
-    }
     public static String getTwitter(Player player) {
         return MineLABFree.getFetchData().getTwitter(player.getUniqueId());
     }

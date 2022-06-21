@@ -5,3 +5,6 @@ credits: '&e%player% &7kişisinin &e%credit% &7kredisi var.'
 Shop:
   success: '&aBaşarıyla &e%product% &aÜrününü aldın.'
   error: '&cMaalesef &e%product% &aÜrününü almak için yeterli krediniz bulunmuyor. &e%credit%&7/&e%required_credit%'
+Arguments:
+  noPlayer: "&cLütfen oyuncuyu girin."
+  noAmount: "&cLütfen miktarı giriniz."

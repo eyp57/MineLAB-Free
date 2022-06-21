@@ -19,8 +19,5 @@ https://minelab.web.tr
 
 /kredi [ver/bak/sil] [oyuncu]
 
-/sitemarket
-### Discord Komutları (JDA)
-
-!profil [Kullanıcı]
+/sitemarke
 

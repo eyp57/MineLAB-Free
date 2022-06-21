@@ -3,17 +3,6 @@ Database:
   database: database
   username: user
   password: password
-
-Discord:
-  Bot:
-    Durum: true
-    Token: "TOKEN"
-    Prefix: "!"
-  Embed:
-    Title: "MineLAB Free"
-    Footer: "Powered by zRooter#7295"
-    Color: "GREEN"
-
 ShopGui:
   Rows: 3
   Title: "&c&lMarket"
