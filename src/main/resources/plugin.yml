@@ -2,6 +2,7 @@ name: MineLABFree
 version: '${project.version}'
 main: tr.web.minelab.minelabfree.MineLABFree
 depend: [ PlaceholderAPI ]
+api-version: 1.13
 authors: [ zRooter ]
 description: MineLAB Free coded with love
 website: https://minelab.web.tr
